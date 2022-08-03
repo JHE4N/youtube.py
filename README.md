@@ -1,2 +1,2 @@
 # youtube.py
-Libary for download youtube video
+Libary for download and information youtube videos
