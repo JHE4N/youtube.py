@@ -1,5 +1,12 @@
 #pip install pytube
 from pytube import YouTube
-video = YouTube('https://www.youtube.com/watch?v=_K9YV4t9dzY')
-stream = video.streams.get_by_itag(22)
-stream.download()
+
+
+def download_music(url):
+    videoLink = YouTube(url)
+    audio = videoLink.streams.filter(only_audio=True)
+    audio.download(filename="audio.mp4")
+
+
+
+download_music('https://www.youtube.com/watch?v=_K9YV4t9dzY')
