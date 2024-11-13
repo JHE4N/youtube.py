@@ -1,12 +1,28 @@
-#pip install pytube
-from pytube import YouTube
+import PySimpleGUI as sg
+from music_download import music_download
+
+def getLinks(str):
+    urls_list = str.split('\n')
+
+    for url in urls_list:
+        print(url)
+        music_download(url)
 
 
-def download_music(url):
-    videoLink = YouTube(url)
-    audio = videoLink.streams.filter(only_audio=True)
-    audio.download(filename="audio.mp4")
+layout = [
+    [sg.Multiline(default_text='Link1\nLink2\nLink3', size=(80, 20), font='_ 14')],
+    [sg.Button('Baixar'), sg.Button('Cancelar')],
+    ]
 
+window = sg.Window('Music Downloader Py', layout)
 
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Cancelar':
+        break
+    #print('Eventoo ', values)
+    getLinks(values[0])
+    print('Todos os links foram baixados')
+    window.close()
 
-download_music('https://www.youtube.com/watch?v=_K9YV4t9dzY')
+window.close()
